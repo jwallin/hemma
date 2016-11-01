@@ -1,0 +1,5 @@
+  --require chai
+  --reporter dot
+  --recursive
+  --ui bdd
+  --compilers js:babel-core/register
