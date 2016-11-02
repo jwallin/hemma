@@ -4,7 +4,8 @@
   "description": "Home automation (IR rerouting)",
   "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "./node_modules/.bin/babel src -d lib && node lib/app.js",
+    "test": "mocha"
   },
   "author": "",
   "license": "ISC",
