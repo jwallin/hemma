@@ -3,6 +3,8 @@
 import IRService from '../../app/services/ir';
 import {assert} from 'chai';
 import sinon from 'sinon';
+import {Promise} from 'rsvp';
+
 import {sources} from '../../config/ir';
 import {SOURCE} from '../../app/constants';
 
@@ -11,7 +13,7 @@ describe('IR Service', () => {
   let irUtilMock;
   beforeEach(() => {
     irUtilMock = {
-      sendCommand: sinon.spy()
+      sendCommand: sinon.mock().returns(Promise.resolve())
     };
     service = new IRService(irUtilMock);
   });
@@ -25,6 +27,11 @@ describe('IR Service', () => {
       service.sendSourceCommand(SOURCE.TV);
       const config = sources[SOURCE.TV];
       assert(irUtilMock.sendCommand.calledWith(config[0], config[1]), 'Should be called with correct args');
+    });
+
+    it('should return a promise', () => {
+      const p = service.sendSourceCommand(SOURCE.TV);
+      assert.isFunction(p.then);
     });
   });
 

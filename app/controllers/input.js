@@ -3,18 +3,24 @@
 import {SOURCE} from '../../app/constants'
 
 class InputController {
-  constructor(irService) {
+  constructor(irService, notificationService) {
     this._irService = irService;
+    this._notificationService = notificationService;
     this._sourceValues = Object.keys(SOURCE).map((k) => { return SOURCE[k]; });
   }
   nextSource() {
     const currentSourceIndex = this._sourceValues.indexOf(this._source);
     const nextSourceIndex = (currentSourceIndex + 1) % this._sourceValues.length;
-    this.setSource(this._sourceValues[nextSourceIndex]);
+    return this.setSource(this._sourceValues[nextSourceIndex]);
   }
   setSource(src) {
     this._source = src;
-    this._irService.sendSourceCommand(src);
+    return this._irService.sendSourceCommand(src)
+      .then(() => {
+        return this._notificationService.notify('Audio source', src);
+      }).catch((e) => {
+        return this._notificationService.notify('Could not set audio source', e);
+      });
   }
   getSource() {
     return this._source;

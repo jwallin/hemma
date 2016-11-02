@@ -3,18 +3,22 @@
 const chai = require('chai');
 import {assert} from 'chai';
 import sinon from 'sinon';
+import {Promise} from 'rsvp';
 
 import InputController from '../../app/controllers/input';
 import {SOURCE} from '../../app/constants';
 
 describe('InputController', () => {
   let controller;
-  let irServiceMock;
+  let irServiceMock, notificationServiceMock;
   beforeEach(() => {
     irServiceMock = {
-      sendSourceCommand: sinon.spy()
+      sendSourceCommand: sinon.stub().returns(Promise.resolve())
     };
-    controller = new InputController(irServiceMock);
+    notificationServiceMock = {
+      notify: sinon.spy()
+    };
+    controller = new InputController(irServiceMock, notificationServiceMock);
   });
 
   it('should be an object', () => {
@@ -42,10 +46,13 @@ describe('InputController', () => {
       assert(irServiceMock.sendSourceCommand.calledWith(SOURCE.SPOTIFY));
     });
 
-    xit('should show notification', function() {
-
+    it('should show notification', (done) => {
+      controller.nextSource().then(() => {
+        assert.isTrue(notificationServiceMock.notify.called);
+        done();
+      });
+      
     });
-
 
     describe('when an error occurs', () => {
       xit('should show a notification', () => {
