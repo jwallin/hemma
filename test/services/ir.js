@@ -1,12 +1,12 @@
 'use strict';
 
-import IRService from '../../app/services/ir';
+import IRService from '../../src/app/services/ir';
 import {assert} from 'chai';
 import sinon from 'sinon';
 import {Promise} from 'rsvp';
 
-import {sources} from '../../config/ir';
-import {SOURCE} from '../../app/constants';
+import {sources} from '../../src/config/ir';
+import {SOURCE} from '../../src/app/constants';
 
 describe('IR Service', () => {
   let service;

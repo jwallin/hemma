@@ -1,6 +1,6 @@
 'use strict';
 
-import NotificationService from '../../app/services/notification';
+import NotificationService from '../../src/app/services/notification';
 import {assert} from 'chai';
 import sinon from 'sinon';
 

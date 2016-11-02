@@ -5,8 +5,8 @@ import {assert} from 'chai';
 import sinon from 'sinon';
 import {Promise} from 'rsvp';
 
-import CECController from '../../app/controllers/cec';
-import {SOURCE} from '../../app/constants';
+import CECController from '../../src/app/controllers/cec';
+import {SOURCE} from '../../src/app/constants';
 
 describe('CECController', () => {
   let controller;

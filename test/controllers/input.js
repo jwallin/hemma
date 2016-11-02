@@ -5,8 +5,8 @@ import {assert} from 'chai';
 import sinon from 'sinon';
 import {Promise} from 'rsvp';
 
-import InputController from '../../app/controllers/input';
-import {SOURCE} from '../../app/constants';
+import InputController from '../../src/app/controllers/input';
+import {SOURCE} from '../../src/app/constants';
 
 describe('InputController', () => {
   let controller;
