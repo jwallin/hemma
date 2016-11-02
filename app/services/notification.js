@@ -5,12 +5,15 @@ import querystring from 'querystring';
 import {Promise} from 'rsvp';
 
 class NotificationService {
-  constructor() {}
+  constructor(host, port) {
+    this._host = host;
+    this._port = port;
+  }
 
   notify(title, message) {
     const options = {
-      host: 'localhost',  //Move to config file
-      port: '8080',
+      host: this._host,
+      port: this._port,
       path: '/jsonrpc',
       method: 'POST',
       headers: {
