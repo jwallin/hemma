@@ -38,6 +38,7 @@ class NotificationService {
       }, (e) => {console.log('e')});
 
       const errorHandler = (e) => {
+        console.log(e);
         reject(e);
       };
 

@@ -51,7 +51,13 @@ describe('InputController', () => {
         assert.isTrue(notificationServiceMock.notify.called);
         done();
       });
-      
+    });
+
+    it('should show notification with correct source', (done) => {
+      controller.nextSource().then(() => {
+        assert.isTrue(notificationServiceMock.notify.calledWith(sinon.match.string, 'Spotify'));
+        done();
+      });
     });
 
     describe('when an error occurs', () => {

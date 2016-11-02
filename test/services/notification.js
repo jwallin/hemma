@@ -8,7 +8,7 @@ describe('NotificationService Service', () => {
   let service;
   
   beforeEach(() => {
-    service = new NotificationService();
+    service = new NotificationService('WEIRDHOST', 1234);
   });
 
   it('should be an object', () => {
@@ -26,13 +26,8 @@ describe('NotificationService Service', () => {
     });
 
     describe('when notification request is successful', () => {
-      let server;
       beforeEach(() => {
-        server = sinon.fakeServer.create();
-      });
-
-      afterEach(() => {
-        server.restore();
+        service = new NotificationService('johanwall.in', 80);
       });
 
       xit('should resolve the returned promise', (done) => {
