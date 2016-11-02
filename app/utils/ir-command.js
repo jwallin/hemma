@@ -1,5 +1,5 @@
-import {Promise} from 'rsvp';
-import exec from 'child_process';
+const Promise = require('rsvp').Promise;
+const exec  = require('child_process').exec;
 
 const SEND_ONCE = 'SEND_ONCE'; 
 const SEND_START = 'SEND_START';
